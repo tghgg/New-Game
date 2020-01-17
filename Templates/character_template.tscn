@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Textures/dialog_box.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/bg.png" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://Scripts/npc_script.gd\"
+
+"
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=3]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Neighbor",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=5]
+resource_name = "walk"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 568.003, 293.229 ), Vector2( 961.815, 293.229 ) ]
+}
+
+[node name="Neighbor" type="KinematicBody2D"]
+position = Vector2( 568.003, 293.229 )
+scale = Vector2( 3.21667, 3.21667 )
+script = SubResource( 1 )
+interaction_script = "res://Dialogues/Neighbor-Chat.json"
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+
+[node name="body_shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+disabled = true
+
+[node name="interactable_area" type="Area2D" parent="."]
+scale = Vector2( 2.73996, 2.46791 )
+monitoring = false
+
+[node name="interactable_shape" type="CollisionShape2D" parent="interactable_area"]
+scale = Vector2( 2.41862, -1.36485 )
+shape = SubResource( 3 )
+
+[node name="face" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 4 )
+animation = "Neighbor"
+
+[node name="movement_handler" type="AnimationPlayer" parent="."]
+anims/walk = SubResource( 5 )
