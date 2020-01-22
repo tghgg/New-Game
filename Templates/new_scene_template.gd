@@ -1,8 +1,8 @@
 extends Node2D
 
 onready var player_comes_out = "res://Dialogues/Game/Player Comes Out.json"
-onready var player = $Characters/Player
-export (bool) var is_top_down = false
+onready var player = $Characters/Evan
+export (bool) var is_top_down = true
 onready var current_scene = self.name
 
 # Setup the scene
@@ -10,9 +10,9 @@ func _ready():
 	print (current_scene)
 	$transition_node.visible = true
 	global.set_current_scene(current_scene)
-	global.set_top_down(is_top_down)
 	global.set_can_talk(true)
 	$transition_node.fade_out()
+	player.talk()
 	# use this to replace conditional_branch and choices parsing 
 
 # Method for other nodes to use
