@@ -10,7 +10,9 @@ onready var animation = $sprite
 
 # Disable character collision whenever there is only sideway movement
 func _ready():
-	if !global.get_top_down():
+	if global.get_top_down():
+		get_node("body_shape").disabled = false
+	else: 
 		get_node("body_shape").disabled = true
 
 func talk():

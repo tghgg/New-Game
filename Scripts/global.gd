@@ -8,7 +8,8 @@ signal dialogue_finished
 onready var can_talk = true setget set_can_talk, get_can_talk
 onready var current_scene = null setget set_current_scene, get_current_scene
 onready var current_body = null setget set_current_body, get_current_body
-onready var top_down = false setget set_top_down, get_top_down
+onready var top_down = true setget set_top_down, get_top_down
+onready var current_player_name = "Evan"
 # getters and setters
 
 # Top-down movement check getters and setters
@@ -42,4 +43,4 @@ func get_current_body():
 
 # Return the player
 func player(): 
-	return get_tree().get_root().get_node("%s/Characters/Player" % get_current_scene())
+	return get_tree().get_root().get_node("%s/Characters/" % get_current_scene() + "%s" % current_player_name)
