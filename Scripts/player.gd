@@ -8,11 +8,12 @@ export (float, 0.0, 1.9) var voice_pitch # HOW HIGH / LOW THE VOICE IS
 export (String, FILE) var interaction_script # A JSON DIALOGUE FILE
 
 # Initialize variables
+const SCALE = 1.4
 onready var motion = Vector2(0, 0)
-const ACCELERATION = 300
-const MAX_SPEED = 500
+const ACCELERATION = 300 * SCALE
+const MAX_SPEED = 500 * SCALE
 const GRAVITY = lerp(1400, 3000, 0.9)
-const JUMP = 800
+const JUMP = 800 * SCALE
 onready var animation = $sprite
 onready var area = $interactable_area
 
